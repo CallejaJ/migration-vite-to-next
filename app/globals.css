@@ -2,30 +2,138 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Variables CSS para consistencia */
-:root {
-  --gradient-primary: linear-gradient(135deg, #3b82f6, #9333ea);
-  --gradient-hover: linear-gradient(135deg, #2563eb, #7c3aed);
-  --gradient-purple: linear-gradient(135deg, #8b5cf6, #3b82f6);
+@layer base {
+  :root {
+    /* Variables shadcn/ui */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
 
-  /* Colores del modo oscuro */
-  --dark-bg-primary: #0b081a;
-  --dark-bg-secondary: #0f0b20;
-  --dark-bg-tertiary: #131024;
-  --dark-border: #1c1636;
-  --dark-text-primary: #cdcdcd;
-  --dark-text-secondary: #9198a0;
+    /* Variables CSS personalizadas para consistencia */
+    --gradient-primary: linear-gradient(135deg, #3b82f6, #9333ea);
+    --gradient-hover: linear-gradient(135deg, #2563eb, #7c3aed);
+    --gradient-purple: linear-gradient(135deg, #8b5cf6, #3b82f6);
+    --primary-blue: #2563eb;
+    --primary-purple: #7e22ce;
+    --secondary-purple: #8b5cf6;
 
-  /* Efectos de glow */
-  --glow-small: 0 0 10px #170d55cc, 0 0 5px #4f4783cc, 0 0 5px #2a2162cc;
-  --glow-medium: 0 0 10px #170d55cc, 0 0 20px #4f4783cc, 0 0 30px #2a2162cc;
-  --glow-large: 0 0 15px #170d55cc, 0 0 25px #4f4783cc, 0 0 35px #2a2162cc;
+    /* Colores del modo oscuro - NUEVOS VALORES MÁS OSCUROS */
+    --dark-bg-primary: #0b081a;
+    --dark-bg-secondary: #0f0b20;
+    --dark-bg-tertiary: #131024;
+    --dark-border: #1c1636;
+    --dark-text-primary: #cdcdcd;
+    --dark-text-secondary: #9198a0;
+
+    /* Efectos de glow mejorados */
+    --glow-small: 0 0 10px #170d55cc, 0 0 5px #4f4783cc, 0 0 5px #2a2162cc;
+    --glow-medium: 0 0 10px #170d55cc, 0 0 20px #4f4783cc, 0 0 30px #2a2162cc;
+    --glow-large: 0 0 15px #170d55cc, 0 0 25px #4f4783cc, 0 0 35px #2a2162cc;
+
+    /* Variables para wallet section */
+    --wallet-gradient-primary: linear-gradient(135deg, #3b82f6, #9333ea);
+    --wallet-gradient-secondary: linear-gradient(135deg, #8b5cf6, #3b82f6);
+  }
+
+  .dark,
+  .dark-mode {
+    /* Variables shadcn/ui para modo oscuro */
+    --background: 217.2 32.6% 17.5%;
+    --foreground: 210 40% 98%;
+    --card: 217.2 32.6% 17.5%;
+    --card-foreground: 210 40% 98%;
+    --popover: 217.2 32.6% 17.5%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Configuración de fuente base */
+html {
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+body {
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+/* Estilos específicos para títulos */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.025em;
 }
 
 /* Utilidades base */
 .backdrop-blur-lg {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+}
+
+.backdrop-blur-md {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .main_logo {
@@ -73,63 +181,188 @@
   background: var(--gradient-hover);
 }
 
+/* Colores específicos para títulos */
+.title-blue {
+  color: var(--primary-blue);
+}
+
+.title-purple {
+  color: var(--secondary-purple);
+}
+
 /* Efectos de transición globales */
 * {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* MODO OSCURO */
+/* MODO OSCURO - ACTUALIZADO CON COLORES MÁS SOFISTICADOS */
 .dark-mode {
   color-scheme: dark;
 }
 
 .dark-mode body {
-  background-color: var(--dark-bg-primary);
+  background: linear-gradient(135deg, #0b081a 0%, #0f0b20 50%, #131024 100%);
   color: var(--dark-text-primary);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Navegación en modo oscuro */
-.dark-mode #root nav {
+/* HERO SECTION con fondo más sofisticado */
+.dark-mode section {
+  background: linear-gradient(
+    135deg,
+    #0b081a 0%,
+    #0f0b20 50%,
+    #131024 100%
+  ) !important;
+}
+
+/* Navegación con fondo más oscuro y elegante */
+.dark-mode nav {
   border-color: var(--dark-border);
-  background: rgba(11, 8, 26, 0.8);
+  background: rgba(11, 8, 26, 0.95) !important;
+  backdrop-filter: blur(16px);
+}
+
+.dark-mode .bg-white\/95 {
+  background-color: rgba(11, 8, 26, 0.95) !important;
+}
+
+.dark-mode .bg-white\/90 {
+  background-color: rgba(11, 8, 26, 0.9) !important;
 }
 
 .dark-mode .bg-white\/80 {
-  background-color: rgba(11, 8, 26, 0.8);
+  background-color: rgba(11, 8, 26, 0.8) !important;
   backdrop-filter: blur(16px);
+}
+
+.dark-mode .border-gray-100\/50 {
+  border-color: rgba(28, 22, 54, 0.5) !important;
+}
+
+.dark-mode .border-gray-200\/30 {
+  border-color: rgba(28, 22, 54, 0.3) !important;
 }
 
 .dark-mode .bg-white {
   background-color: var(--dark-bg-primary);
 }
 
-/* Colores de texto en modo oscuro */
+/* EXCEPCIÓN: Mantener gradientes originales del navbar */
+.dark-mode nav .bg-gradient-to-r.from-blue-600.to-purple-600 {
+  background: linear-gradient(135deg, #2563eb, #9333ea) !important;
+}
+
+.dark-mode nav .group-hover\:from-blue-700:hover {
+  background: linear-gradient(135deg, #1d4ed8, #7c3aed) !important;
+}
+
+/* Botones del navbar en modo oscuro - SIN MÁRGENES MOLESTOS */
+.dark-mode nav .border-blue-200 {
+  border-color: var(--dark-border) !important;
+  background: transparent !important;
+}
+
+.dark-mode nav .hover\:border-blue-300:hover {
+  border-color: rgba(59, 130, 246, 0.5) !important;
+  background: rgba(59, 130, 246, 0.1) !important;
+}
+
+.dark-mode nav .hover\:bg-blue-50:hover {
+  background: rgba(59, 130, 246, 0.1) !important;
+}
+
+.dark-mode nav .text-blue-600 {
+  color: #60a5fa !important;
+}
+
+.dark-mode nav .hover\:text-blue-700:hover {
+  color: #93c5fd !important;
+}
+
+/* Colores de texto mejorados para el nuevo esquema */
 .dark-mode .text-gray-900 {
-  color: var(--dark-text-primary);
+  color: var(--dark-text-primary) !important;
 }
 
 .dark-mode .text-gray-600,
 .dark-mode .text-gray-500,
-.dark-mode .text-gray-800 {
-  color: var(--dark-text-secondary);
+.dark-mode .text-gray-800,
+.dark-mode .text-gray-700 {
+  color: var(--dark-text-secondary) !important;
 }
 
-/* Fondos en modo oscuro */
+/* Ajustes específicos para gradientes de texto */
+.dark-mode .text-blue-600 {
+  color: #60a5fa !important;
+}
+
+.dark-mode .from-purple-600 {
+  --tw-gradient-from: #a855f7 !important;
+}
+
+.dark-mode .via-blue-600 {
+  --tw-gradient-via: #60a5fa !important;
+}
+
+.dark-mode .to-purple-700 {
+  --tw-gradient-to: #8b5cf6 !important;
+}
+
+/* Fondos con el nuevo esquema de colores - SIN GRADIENTES EN MODO OSCURO */
 .dark-mode .bg-gray-50 {
   background-color: var(--dark-bg-secondary);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+.dark-mode .from-gray-50\/50 {
+  --tw-gradient-from: var(--dark-bg-secondary) var(--tw-gradient-from-position);
+}
+
+.dark-mode .to-blue-50\/30 {
+  --tw-gradient-to: var(--dark-bg-secondary) var(--tw-gradient-to-position);
+}
+
+/* Eliminar gradientes de las tarjetas en modo oscuro */
+.dark-mode .bg-gradient-to-r {
+  background: var(--dark-bg-tertiary) !important;
+}
+
+.dark-mode .from-blue-50 {
+  --tw-gradient-from: var(--dark-bg-tertiary) var(--tw-gradient-from-position);
+}
+
+.dark-mode .to-purple-50 {
+  --tw-gradient-to: var(--dark-bg-tertiary) var(--tw-gradient-to-position);
+}
+
+.dark-mode .from-purple-50 {
+  --tw-gradient-from: var(--dark-bg-tertiary) var(--tw-gradient-from-position);
+}
+
+.dark-mode .to-blue-50 {
+  --tw-gradient-to: var(--dark-bg-tertiary) var(--tw-gradient-to-position);
+}
+
+/* Cards y elementos redondeados con mejor contraste - SIN GRADIENTES */
 .dark-mode .rounded-3xl,
 .dark-mode .rounded-2xl,
 .dark-mode .rounded-xl {
-  border-color: var(--dark-border);
-  background-color: var(--dark-bg-tertiary);
+  border: 1px solid var(--dark-border);
+  background: var(--dark-bg-tertiary) !important;
   transition: all 0.3s ease;
 }
 
-/* Efectos hover mejorados */
+/* Bordes específicos para las tarjetas de información */
+.dark-mode .border-blue-100\/50 {
+  border-color: var(--dark-border) !important;
+}
+
+.dark-mode .border-purple-100\/50 {
+  border-color: var(--dark-border) !important;
+}
+
+/* Efectos hover más sutiles y elegantes - SIN GRADIENTES */
 .dark-mode .hover\:border-blue-100 {
   transition: all 0.3s ease;
   box-shadow: var(--glow-small);
@@ -137,20 +370,19 @@
 
 .dark-mode .hover\:border-blue-100:hover {
   border: 1px solid transparent;
-  background: linear-gradient(var(--dark-bg-tertiary), var(--dark-bg-tertiary))
-      padding-box,
-    var(--gradient-primary) border-box;
+  background: var(--dark-bg-secondary) !important;
+  border: 1px solid rgba(59, 130, 246, 0.3);
   box-shadow: var(--glow-medium);
   transform: translateY(-2px);
 }
 
 .dark-mode .hover\:bg-gray-100:hover,
 .dark-mode .hover\:bg-gray-50:hover {
-  background-color: var(--dark-bg-secondary);
+  background: var(--dark-bg-secondary) !important;
   box-shadow: var(--glow-medium);
 }
 
-/* Efectos de glow para elementos importantes */
+/* Efectos de glow más pronunciados */
 .dark-mode .shadow-2xl,
 .dark-mode .rounded-2xl:hover,
 .dark-mode .rounded-3xl:hover {
@@ -161,39 +393,7 @@
   box-shadow: var(--glow-large);
 }
 
-/* Formularios en modo oscuro */
-.dark-mode input,
-.dark-mode textarea {
-  border-color: var(--dark-border);
-  background-color: var(--dark-bg-tertiary);
-  color: var(--dark-text-primary);
-  transition: all 0.3s ease;
-}
-
-.dark-mode input:focus,
-.dark-mode textarea:focus {
-  border-color: transparent;
-  background: linear-gradient(var(--dark-bg-tertiary), var(--dark-bg-tertiary))
-      padding-box,
-    var(--gradient-primary) border-box;
-  box-shadow: var(--glow-small);
-}
-
-.dark-mode input::placeholder,
-.dark-mode textarea::placeholder {
-  color: var(--dark-text-secondary);
-}
-
-/* Botones en modo oscuro */
-.dark-mode button:not(.gradient-bg) {
-  transition: all 0.3s ease;
-}
-
-.dark-mode button:not(.gradient-bg):hover {
-  box-shadow: var(--glow-small);
-}
-
-/* Gradientes en modo oscuro */
+/* Gradientes mejorados para el modo oscuro */
 .dark-mode .from-gray-50 {
   --tw-gradient-from: var(--dark-bg-primary) var(--tw-gradient-from-position);
   --tw-gradient-to: rgba(11, 8, 26, 0) var(--tw-gradient-to-position);
@@ -206,19 +406,72 @@
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
-/* Cards especiales en modo oscuro */
+/* Cards especiales con el nuevo estilo - SIN GRADIENTES */
 .dark-mode .feature-card,
 .dark-mode .service-card {
-  background: var(--dark-bg-tertiary);
+  background: var(--dark-bg-tertiary) !important;
   border: 1px solid var(--dark-border);
   transition: all 0.3s ease;
 }
 
 .dark-mode .feature-card:hover,
 .dark-mode .service-card:hover {
-  background: var(--dark-bg-secondary);
+  background: var(--dark-bg-secondary) !important;
   box-shadow: var(--glow-medium);
   transform: translateY(-4px);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+/* Footer con gradiente sofisticado */
+.dark-mode .footer {
+  background: linear-gradient(
+    135deg,
+    var(--dark-bg-primary) 0%,
+    var(--dark-bg-secondary) 50%,
+    var(--dark-bg-tertiary) 100%
+  );
+  border-top: 1px solid var(--dark-border);
+}
+
+/* Formularios con mejor contraste - SIN GRADIENTES */
+.dark-mode input,
+.dark-mode textarea {
+  border: 1px solid var(--dark-border);
+  background: var(--dark-bg-tertiary) !important;
+  color: var(--dark-text-primary);
+  transition: all 0.3s ease;
+}
+
+.dark-mode input:focus,
+.dark-mode textarea:focus {
+  border: 1px solid rgba(59, 130, 246, 0.5);
+  background: var(--dark-bg-secondary) !important;
+  box-shadow: var(--glow-small);
+  outline: none;
+}
+
+.dark-mode input::placeholder,
+.dark-mode textarea::placeholder {
+  color: var(--dark-text-secondary);
+}
+
+/* Botones mejorados - SIN GRADIENTES */
+.dark-mode button:not(.gradient-bg) {
+  transition: all 0.3s ease;
+}
+
+.dark-mode button:not(.gradient-bg):hover {
+  box-shadow: var(--glow-small);
+  background: var(--dark-bg-secondary) !important;
+}
+
+/* BOTONES - ASEGURAR TEXTO BLANCO */
+.dark-mode button .text-white {
+  color: #ffffff !important;
+}
+
+.dark-mode a .text-white {
+  color: #ffffff !important;
 }
 
 /* Animaciones mejoradas */
@@ -306,6 +559,167 @@
   left: 100%;
 }
 
+/* Animaciones básicas necesarias */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes float-delay {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes float-inverse {
+  0%,
+  100% {
+    transform: translateY(-5px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+/* Clases de animación */
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.animate-pulse-custom {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-float-delay {
+  animation: float-delay 4.5s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+
+.animate-float-inverse {
+  animation: float-inverse 3.5s ease-in-out infinite;
+}
+
+/* Patrón de fondo simplificado */
+.bg-grid-pattern {
+  background-image: linear-gradient(
+      to right,
+      rgba(59, 130, 246, 0.08) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(59, 130, 246, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.grid-pattern {
+  background-image: linear-gradient(
+      to right,
+      rgba(59, 130, 246, 0.08) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(59, 130, 246, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Modo oscuro específico para wallet component */
+.dark-mode .bg-grid-pattern {
+  background-image: linear-gradient(
+      to right,
+      rgba(59, 130, 246, 0.1) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+}
+
+/* Estilos específicos para las tarjetas de información */
+.dark-mode .info-card {
+  background: var(--dark-bg-tertiary) !important;
+  border: 1px solid var(--dark-border) !important;
+}
+
+.dark-mode .info-card:hover {
+  background: var(--dark-bg-secondary) !important;
+  border-color: rgba(59, 130, 246, 0.3) !important;
+  box-shadow: var(--glow-medium);
+  transform: translateY(-2px);
+}
+
+/* Texto específico para las tarjetas */
+.dark-mode .card-title {
+  color: var(--dark-text-primary) !important;
+}
+
+.dark-mode .card-text {
+  color: var(--dark-text-secondary) !important;
+}
+
+/* Asegurar que los gradientes de texto funcionen en tarjetas */
+.dark-mode .info-card .gradient-text {
+  background: var(--gradient-primary) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* Gradientes de texto para modo oscuro - SOLO PARA ELEMENTOS ESPECÍFICOS */
+.dark-mode .gradient-text:not(.info-card .gradient-text) {
+  background: var(--gradient-primary) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+.dark-mode .from-blue-600 {
+  --tw-gradient-from: #60a5fa !important;
+}
+
+.dark-mode .to-purple-600 {
+  --tw-gradient-to: #a855f7 !important;
+}
+
+.dark-mode .bg-clip-text {
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+}
+
+.dark-mode .text-transparent {
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
 /* Responsive mejoras */
 @media (max-width: 768px) {
   .dark-mode .hover\:border-blue-100:hover {
@@ -317,13 +731,30 @@
   .dark-mode .rounded-3xl:hover {
     box-shadow: var(--glow-small);
   }
+
+  .animate-float,
+  .animate-float-delay {
+    animation-duration: 3s;
+  }
+
+  .animate-float {
+    transform: translateY(0px);
+  }
+
+  .animate-float:hover {
+    transform: translateY(-4px);
+  }
 }
 
 /* Accesibilidad */
 @media (prefers-reduced-motion: reduce) {
   .dark-mode *,
   .dark-mode *::before,
-  .dark-mode *::after {
+  .dark-mode *::after,
+  .animate-spin-slow,
+  .animate-float,
+  .animate-float-delay,
+  .animate-pulse-custom {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
