@@ -85,7 +85,7 @@ const HeroSection = () => {
                   <code className='text-sm font-mono text-gray-300'>
                     {`// Memento ToolKit Smart Contract
 import { Contract } from 'web3';
-import { Token } from '@Fiat4Tokenstoolkit/core';
+import { Token } from '@mementoToolkit/core';
 
 export const deployToken = async () => {
   const contract = new Contract({
