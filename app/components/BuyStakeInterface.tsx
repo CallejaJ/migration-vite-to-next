@@ -1,111 +1,137 @@
-import { Coins, DollarSign, Zap } from "lucide-react"
+import { Coins, DollarSign, Zap } from "lucide-react";
 
 const BuyStakeInterface = () => {
   return (
-    <div className="bg-gray-900 rounded-2xl p-6 text-white shadow-xl">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        <h3 className="text-xl font-semibold gradient-text">Buy</h3>
-        <div className="flex items-center space-x-2">
-          <div className="w-3 h-3 rounded-full bg-red-500"></div>
-          <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-          <div className="w-3 h-3 rounded-full bg-green-500"></div>
+    <div className="bg-gray-900 rounded-2xl p-4 sm:p-6 text-white shadow-xl max-w-md mx-auto">
+      {/* Header con título y semáforo */}
+      <div className="flex items-center justify-between mb-4 sm:mb-6">
+        <h2 className="text-blue-400 text-lg sm:text-xl font-semibold">Buy</h2>
+        <div className="flex gap-2">
+          <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+          <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+          <div className="w-3 h-3 bg-green-500 rounded-full"></div>
         </div>
       </div>
+
       {/* Token Selection */}
-      <div className="flex gap-3 mb-6">
-        <button className="flex items-center gap-2 bg-gradient-to-r from-gray-800 to-gray-700 px-4 py-2 rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-300 group">
-          <div className="w-5 h-5 rounded-full gradient-bg flex items-center justify-center">
-            <Coins className="w-3 h-3 text-white" />
+      <div className="flex items-center justify-between mb-4 sm:mb-6">
+        <div className="flex items-center gap-2 sm:gap-3 flex-1">
+          <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-r from-blue-400 to-purple-500 flex items-center justify-center flex-shrink-0">
+            <svg
+              viewBox="0 0 24 24"
+              className="w-3 h-3 sm:w-4 sm:h-4 text-white fill-current"
+            >
+              <path d="M11.944 17.97L4.58 13.62 11.943 24l7.37-10.38-7.372 4.35h.003zM12.056 0L4.69 12.223l7.365 4.354 7.365-4.35L12.056 0z" />
+            </svg>
           </div>
-          <span className="font-medium group-hover:text-white transition-colors">ETH</span>
-        </button>
-        <button className="flex items-center gap-2 bg-gradient-to-r from-gray-800 to-gray-700 px-4 py-2 rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-300 group">
-          <div className="w-5 h-5 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center">
-            <DollarSign className="w-3 h-3 text-white" />
+          <span className="text-white font-semibold text-base sm:text-lg">ETH</span>
+        </div>
+
+        <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gray-600 flex items-center justify-center flex-shrink-0 mx-2">
+          <span className="text-gray-300 text-sm">⇄</span>
+        </div>
+
+        <div className="flex items-center gap-2 sm:gap-3 flex-1 justify-end">
+          <span className="text-white font-semibold text-base sm:text-lg">USDT</span>
+          <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-r from-green-400 to-emerald-500 flex items-center justify-center flex-shrink-0">
+            <span className="text-white font-bold text-xs sm:text-sm">₮</span>
           </div>
-          <span className="font-medium group-hover:text-white transition-colors">USDT</span>
-        </button>
+        </div>
       </div>
+
       {/* Balance Display */}
-      <div className="flex items-center justify-between mb-4">
-        <div className="text-gray-400 text-sm">ETH Balance</div>
-        <div className="text-sm font-mono">0.0000</div>
+      <div className="flex items-center justify-between mb-3 sm:mb-4">
+        <span className="text-gray-400 text-xs sm:text-sm">ETH Balance</span>
+        <span className="text-white font-mono text-xs sm:text-sm">0.0000</span>
       </div>
-      {/* Exchange Interface */}
-      <div className="space-y-4 mb-6">
-        {/* Pay with ETH */}
-        <div className="space-y-2">
-          <div className="flex justify-between text-sm">
-            <span className="text-gray-400">Pay with ETH</span>
-            <button className="gradient-text hover:from-blue-400 hover:to-purple-400 transition-all duration-300 font-medium">
-              Max
-            </button>
-          </div>
-          <div className="flex items-center bg-gray-800 rounded-lg p-3 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-opacity-50 border border-gray-700">
-            <input type="text" className="bg-transparent flex-1 outline-none font-mono text-lg" placeholder="0" />
-            <div className="flex items-center gap-2">
-              <div className="w-5 h-5 rounded-full gradient-bg flex items-center justify-center">
-                <Coins className="w-3 h-3 text-white" />
-              </div>
-              <span className="text-sm font-medium">ETH</span>
-            </div>
-          </div>
+
+      {/* Pay with ETH */}
+      <div className="mb-3 sm:mb-4">
+        <div className="flex justify-between items-center mb-2">
+          <span className="text-gray-400 text-xs sm:text-sm">Pay with ETH</span>
+          <button className="text-blue-400 hover:text-blue-300 text-xs sm:text-sm font-medium">
+            Max
+          </button>
         </div>
-        {/* Receive BTM */}
-        <div className="space-y-2">
-          <div className="flex justify-between text-sm">
-            <span className="text-gray-400">Receive BTM</span>
-            <div className="flex items-center space-x-2">
-              <span className="text-green-500 text-xs">↑ 13.47%</span>
+        <div className="flex items-center bg-gray-800/40 backdrop-blur-sm rounded-lg p-3 sm:p-4 border border-gray-600/30 focus-within:border-blue-400/50 focus-within:bg-gray-800/60 transition-all duration-300">
+          <input
+            type="text"
+            className="bg-transparent flex-1 outline-none text-white font-mono placeholder:text-gray-400 text-sm sm:text-base min-w-0"
+            placeholder="0"
+          />
+          <div className="flex items-center gap-2 ml-2 flex-shrink-0">
+            <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-gradient-to-r from-blue-400 to-purple-500 flex items-center justify-center">
+              <svg
+                viewBox="0 0 24 24"
+                className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-white fill-current"
+              >
+                <path d="M11.944 17.97L4.58 13.62 11.943 24l7.37-10.38-7.372 4.35h.003zM12.056 0L4.69 12.223l7.365 4.354 7.365-4.35L12.056 0z" />
+              </svg>
             </div>
-          </div>
-          <div className="flex items-center bg-gray-800 rounded-lg p-3 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-opacity-50 border border-gray-700">
-            <input type="text" className="bg-transparent flex-1 outline-none font-mono text-lg" placeholder="0" />
-            <div className="flex items-center gap-2">
-              <div className="w-5 h-5 rounded-full bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center">
-                <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-              </div>
-              <span className="text-sm font-medium">BTM</span>
-            </div>
+            <span className="text-white font-medium text-xs sm:text-sm">ETH</span>
           </div>
         </div>
       </div>
-      {/* Stats */}
-      <div className="mb-6 p-3 bg-gray-800 rounded-xl border border-gray-700">
-        <div className="grid grid-cols-2 gap-4 text-sm">
-          <div className="space-y-1">
-            <div className="text-gray-400">Price Impact</div>
-            <div className="text-green-500">{"<0.01%"}</div>
-          </div>
-          <div className="space-y-1">
-            <div className="text-gray-400">Min. Received</div>
-            <div className="font-mono">0.00 BTM</div>
+
+      {/* Receive BTM */}
+      <div className="mb-4 sm:mb-6">
+        <div className="flex justify-between items-center mb-2">
+          <span className="text-gray-400 text-xs sm:text-sm">Receive BTM</span>
+          <span className="text-green-400 text-xs sm:text-sm flex items-center gap-1">
+            <span>↗</span>
+            13.47%
+          </span>
+        </div>
+        <div className="flex items-center bg-gray-800/40 backdrop-blur-sm rounded-lg p-3 sm:p-4 border border-gray-600/30 focus-within:border-blue-400/50 focus-within:bg-gray-800/60 transition-all duration-300">
+          <input
+            type="text"
+            className="bg-transparent flex-1 outline-none text-white font-mono placeholder:text-gray-400 text-sm sm:text-base min-w-0"
+            placeholder="0"
+          />
+          <div className="flex items-center gap-2 ml-2 flex-shrink-0">
+            <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-yellow-500 flex items-center justify-center">
+              <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-yellow-300 rounded-full"></div>
+            </div>
+            <span className="text-white font-medium text-xs sm:text-sm">BTM</span>
           </div>
         </div>
       </div>
-      {/* Action Button */}
-      <button className="w-full gradient-bg hover:from-blue-600 hover:to-purple-700 text-white py-3 px-4 rounded-xl font-medium transition-all duration-300 transform hover:translate-y-[-1px] shadow-lg hover:shadow-xl group">
-        <span className="flex items-center justify-center space-x-2">
-          <span>Buy</span>
-          <Zap className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
-        </span>
+
+      {/* Price Impact Info */}
+      <div className="flex justify-between text-xs sm:text-sm mb-4 sm:mb-6">
+        <div>
+          <div className="text-gray-400 mb-1">Price Impact</div>
+          <div className="text-green-400">&lt;0.01%</div>
+        </div>
+        <div className="text-right">
+          <div className="text-gray-400 mb-1">Min. Received</div>
+          <div className="text-white">0.00 BTM</div>
+        </div>
+      </div>
+
+      {/* Buy Button */}
+      <button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-xl mb-3 sm:mb-4">
+        <div className="flex items-center justify-center gap-2">
+          <span className="text-sm sm:text-base">Buy</span>
+          <Zap className="w-4 h-4" />
+        </div>
       </button>
+
       {/* Footer Stats */}
-      <div className="mt-4 pt-4 border-t border-gray-800">
-        <div className="flex items-center justify-between text-sm text-gray-400">
+      <div className="pt-3 sm:pt-4 border-t border-gray-700/50">
+        <div className="flex items-center justify-between text-xs sm:text-sm text-gray-400">
           <div className="flex items-center space-x-2">
             <span>Gas Fee:</span>
-            <span className="font-mono">~$0.01</span>
+            <span className="font-mono text-white">~$0.01</span>
           </div>
           <div className="flex items-center">
-            <span className="text-yellow-500 mr-1">⚡</span>
+            <span className="text-yellow-400 mr-1">⚡</span>
             <span>High Speed</span>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default BuyStakeInterface
+export default BuyStakeInterface;
