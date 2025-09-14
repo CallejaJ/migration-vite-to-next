@@ -1,48 +1,62 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState, useEffect } from "react"
-import { Footer } from "../components/ContactAndFooter"
-import { motion } from "framer-motion"
+import { useState, useEffect } from "react";
+import { Footer } from "../components/ContactAndFooter";
+import { motion } from "framer-motion";
 
 const DataFlowAnimation = () => {
+  // Posiciones fijas para evitar hydration mismatch
+  const particlePositions = [
+    { x: 15, y: 20 },
+    { x: 85, y: 35 },
+    { x: 25, y: 75 },
+    { x: 70, y: 15 },
+    { x: 45, y: 85 },
+    { x: 65, y: 60 }
+  ];
+
   return (
     <div className="relative w-full h-full flex items-center justify-center">
-      <div className="relative w-[400px] h-[300px] bg-gradient-to-br from-blue-50 via-purple-50/30 to-gray-50 rounded-3xl p-8 border border-blue-100/50 shadow-xl">
+      {/* Container responsive - se adapta al tamaño de pantalla */}
+      <div className="relative w-full max-w-[400px] h-[250px] sm:h-[300px] bg-gradient-to-br from-blue-50 via-purple-50/30 to-gray-50 rounded-3xl p-4 sm:p-8 border border-blue-100/50 shadow-xl mx-4">
         {/* Grid de fondo mejorado */}
         <div className="absolute inset-0 bg-grid-pattern opacity-20"></div>
         {/* Efecto de glow sutil */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-transparent rounded-3xl"></div>
-        {/* Líneas de conexión - Curva más suave */}
-        <svg className="absolute inset-0 w-full h-full">
+        
+        {/* Líneas de conexión - Con valores absolutos */}
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
           <path
-            d="M 80,150 Q 200,50 320,150"
+            d="M 20,50 Q 50,25 80,50"
             stroke="#3B82F6"
-            strokeWidth="2"
-            strokeDasharray="4 4"
+            strokeWidth="0.5"
+            strokeDasharray="2 2"
             fill="none"
             className="opacity-30"
+            vectorEffect="non-scaling-stroke"
           />
           <path
-            d="M 80,150 Q 200,250 320,150"
+            d="M 20,50 Q 50,75 80,50"
             stroke="#9333EA"
-            strokeWidth="2"
-            strokeDasharray="4 4"
+            strokeWidth="0.5"
+            strokeDasharray="2 2"
             fill="none"
             className="opacity-30"
+            vectorEffect="non-scaling-stroke"
           />
         </svg>
-        {/* Sobre (origen) con gradiente */}
-        <div className="absolute left-12 top-1/2 -translate-y-1/2">
+
+        {/* Sobre (origen) - Posición responsive */}
+        <div className="absolute left-4 sm:left-12 top-1/2 -translate-y-1/2">
           <motion.div
-            className="gradient-bg w-16 h-16 rounded-2xl shadow-xl flex items-center justify-center relative overflow-hidden"
+            className="gradient-bg w-12 h-12 sm:w-16 sm:h-16 rounded-2xl shadow-xl flex items-center justify-center relative overflow-hidden"
             animate={{ y: [-5, 5, -5] }}
             transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
           >
-            {/* Efecto de brillo interno */}
             <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent"></div>
-            <svg className="w-8 h-8 text-white relative z-10" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white relative z-10" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -52,16 +66,16 @@ const DataFlowAnimation = () => {
             </svg>
           </motion.div>
         </div>
-        {/* Servidor (destino) con gradiente */}
-        <div className="absolute right-12 top-1/2 -translate-y-1/2">
+
+        {/* Servidor (destino) - Posición responsive */}
+        <div className="absolute right-4 sm:right-12 top-1/2 -translate-y-1/2">
           <motion.div
-            className="bg-gradient-to-br from-purple-500 to-blue-600 w-16 h-16 rounded-2xl shadow-xl flex items-center justify-center relative overflow-hidden"
+            className="bg-gradient-to-br from-purple-500 to-blue-600 w-12 h-12 sm:w-16 sm:h-16 rounded-2xl shadow-xl flex items-center justify-center relative overflow-hidden"
             animate={{ y: [5, -5, 5] }}
             transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
           >
-            {/* Efecto de brillo interno */}
             <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent"></div>
-            <svg className="w-8 h-8 text-white relative z-10" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white relative z-10" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <rect x="2" y="2" width="20" height="8" rx="2" strokeWidth={2} />
               <rect x="2" y="14" width="20" height="8" rx="2" strokeWidth={2} />
               <circle cx="6" cy="6" r="1" fill="currentColor" />
@@ -71,15 +85,16 @@ const DataFlowAnimation = () => {
             </svg>
           </motion.div>
         </div>
-        {/* Paquetes de datos animados - Ruta superior */}
+
+        {/* Paquetes de datos animados - Ruta superior con posiciones porcentuales */}
         {[0, 1, 2].map((index) => (
           <motion.div
             key={`top-${index}`}
-            className="absolute"
-            initial={{ left: "80px", top: "150px" }}
+            className="absolute w-3 h-3 sm:w-4 sm:h-4 bg-blue-500 rounded-full shadow-lg"
+            initial={{ left: "20%", top: "50%" }}
             animate={{
-              left: ["80px", "320px"],
-              top: ["150px", "100px", "150px"],
+              left: ["20%", "80%"],
+              top: ["50%", "35%", "50%"],
               scale: [0.8, 1, 0.8],
               opacity: [0, 1, 0],
             }}
@@ -89,19 +104,18 @@ const DataFlowAnimation = () => {
               delay: index * 1,
               ease: "easeInOut",
             }}
-          >
-            <div className="w-4 h-4 bg-blue-500 rounded-full shadow-lg" />
-          </motion.div>
+          />
         ))}
-        {/* Paquetes de datos animados - Ruta inferior */}
+
+        {/* Paquetes de datos animados - Ruta inferior con posiciones porcentuales */}
         {[0, 1, 2].map((index) => (
           <motion.div
             key={`bottom-${index}`}
-            className="absolute"
-            initial={{ left: "80px", top: "150px" }}
+            className="absolute w-3 h-3 sm:w-4 sm:h-4 bg-purple-500 rounded-full shadow-lg"
+            initial={{ left: "20%", top: "50%" }}
             animate={{
-              left: ["80px", "320px"],
-              top: ["150px", "200px", "150px"],
+              left: ["20%", "80%"],
+              top: ["50%", "65%", "50%"],
               scale: [0.8, 1, 0.8],
               opacity: [0, 1, 0],
             }}
@@ -111,18 +125,17 @@ const DataFlowAnimation = () => {
               delay: index * 1 + 1.5,
               ease: "easeInOut",
             }}
-          >
-            <div className="w-4 h-4 bg-purple-500 rounded-full shadow-lg" />
-          </motion.div>
+          />
         ))}
-        {/* Partículas brillantes */}
-        {[...Array(8)].map((_, index) => (
+
+        {/* Partículas brillantes - POSICIONES FIJAS para evitar hydration error */}
+        {particlePositions.map((position, index) => (
           <motion.div
             key={`particle-${index}`}
             className="absolute"
             initial={{
-              x: Math.random() * 400,
-              y: Math.random() * 300,
+              x: `${position.x}%`,
+              y: `${position.y}%`,
               scale: 0,
               opacity: 0,
             }}
@@ -137,13 +150,14 @@ const DataFlowAnimation = () => {
               ease: "easeInOut",
             }}
           >
-            <div className={`w-2 h-2 rounded-full blur-sm ${index % 2 === 0 ? "bg-blue-300" : "bg-purple-300"}`} />
+            <div className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full blur-sm ${index % 2 === 0 ? "bg-blue-300" : "bg-purple-300"}`} />
           </motion.div>
         ))}
-        {/* Elementos decorativos adicionales */}
-        <div className="absolute top-4 right-4 w-2 h-2 bg-blue-400 rounded-full animate-pulse-custom"></div>
+
+        {/* Elementos decorativos responsive */}
+        <div className="absolute top-2 sm:top-4 right-2 sm:right-4 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-400 rounded-full animate-pulse-custom"></div>
         <div
-          className="absolute bottom-4 left-4 w-1 h-1 bg-purple-400 rounded-full animate-pulse-custom"
+          className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 w-1 h-1 sm:w-1 sm:h-1 bg-purple-400 rounded-full animate-pulse-custom"
           style={{ animationDelay: "2s" }}
         ></div>
       </div>
@@ -157,24 +171,24 @@ const Contact = () => {
     email: "",
     subject: "",
     message: "",
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
     // Simular envío (reemplazar con lógica real)
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     // Reset form
-    setFormData({ name: "", email: "", subject: "", message: "" })
-    setIsSubmitting(false)
+    setFormData({ name: "", email: "", subject: "", message: "" });
+    setIsSubmitting(false);
     // Mostrar mensaje de éxito (opcional)
-    alert("Message sent successfully!")
-  }
+    alert("Message sent successfully!");
+  };
 
   return (
     <>
@@ -191,7 +205,9 @@ const Contact = () => {
                 <h1 className="text-4xl font-bold mb-2">
                   <span className="gradient-text">Get in Touch</span>
                 </h1>
-                <p className="text-gray-600 mb-8 text-lg">Have any questions? We&apos;d love to hear from you.</p>
+                <p className="text-gray-600 mb-8 text-lg">
+                  Have any questions? We&apos;d love to hear from you.
+                </p>
               </motion.div>
               <motion.form
                 onSubmit={handleSubmit}
@@ -210,7 +226,9 @@ const Contact = () => {
                       required
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm hover:bg-white focus:bg-white"
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, name: e.target.value })
+                      }
                       placeholder="Your name"
                     />
                   </div>
@@ -223,7 +241,9 @@ const Contact = () => {
                       required
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm hover:bg-white focus:bg-white"
                       value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
                       placeholder="your.email@example.com"
                     />
                   </div>
@@ -237,7 +257,9 @@ const Contact = () => {
                     required
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm hover:bg-white focus:bg-white"
                     value={formData.subject}
-                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, subject: e.target.value })
+                    }
                     placeholder="What's this about?"
                   />
                 </div>
@@ -250,7 +272,9 @@ const Contact = () => {
                     required
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none transition-all duration-300 bg-white/80 backdrop-blur-sm hover:bg-white focus:bg-white"
                     value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, message: e.target.value })
+                    }
                     placeholder="Tell us more about your project or question..."
                   />
                 </div>
@@ -267,7 +291,12 @@ const Contact = () => {
                   ) : (
                     <>
                       <span>Send Message</span>
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
@@ -288,7 +317,12 @@ const Contact = () => {
               >
                 <div className="flex items-center space-x-3">
                   <div className="w-10 h-10 gradient-bg rounded-full flex items-center justify-center">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg
+                      className="w-5 h-5 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -298,15 +332,19 @@ const Contact = () => {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="gradient-text font-semibold">Quick Response</h4>
-                    <p className="text-gray-600 text-sm">We typically respond within 24 hours</p>
+                    <h4 className="gradient-text font-semibold">
+                      Quick Response
+                    </h4>
+                    <p className="text-gray-600 text-sm">
+                      We typically respond within 24 hours
+                    </p>
                   </div>
                 </div>
               </motion.div>
             </div>
             {/* Animación mejorada */}
             <motion.div
-              className="lg:w-1/2 h-[500px] mt-12 lg:mt-0"
+              className="lg:w-1/2 h-[300px] sm:h-[400px] lg:h-[500px] mt-8 lg:mt-0"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
@@ -318,7 +356,7 @@ const Contact = () => {
       </div>
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;

@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowLeftRight } from "lucide-react";
-import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -41,16 +40,21 @@ const Navbar = () => {
               </div>
             </div>
             <div className='flex flex-col'>
-              <span className='text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300'>
-                Memento Toolkit
-              </span>
-              <span className='text-xs text-gray-500 font-medium tracking-wide'>
-                WEB3 SOLUTIONS
+              <div className='flex items-baseline space-x-1'>
+                <span className='text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300'>
+                  Memento
+                </span>
+                <span className='text-xl font-bold gradient-text'>
+                  ToolKit
+                </span>
+              </div>
+              <span className='text-[10px] text-gray-500 font-semibold tracking-[0.15em] uppercase font-sans mt-0.5'>
+                Web3 Solutions
               </span>
             </div>
           </Link>
 
-          {/* Navigation Links - Oculto en móvil, visible en desktop */}
+          {/* Navigation Links - Ahora incluye Contact */}
           <div className='hidden md:flex items-center space-x-8'>
             <Link
               href='/#features'
@@ -73,18 +77,17 @@ const Navbar = () => {
               About
               <span className='absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full'></span>
             </Link>
-          </div>
-
-          {/* CTA Buttons - Espaciado mejorado y más compacto */}
-          <div className='flex items-center gap-2'>
             <Link
               href='/contact'
-              className='hidden sm:inline-flex items-center px-3 py-1.5 text-sm font-medium text-blue-600 hover:text-blue-700 rounded-lg border border-blue-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-200'
+              className='text-gray-600 hover:text-blue-600 font-medium transition-colors duration-200 relative group'
             >
-              Contact us
+              Contact
+              <span className='absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full'></span>
             </Link>
-            <ThemeToggle />
           </div>
+
+          {/* Espacio vacío en móvil para mantener balance del layout */}
+          <div className='md:hidden'></div>
         </div>
       </div>
     </nav>
